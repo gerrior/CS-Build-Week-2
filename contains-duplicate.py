@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/contains-duplicate/submissions/
+
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         dictionary = {}
