@@ -5,28 +5,34 @@ class ListNode(object):
     self.value = x
     self.next = next
 
-length = 0
-fromEnd = 0
-
 def remove_kth_from_end(head, k):
-    global length
-    global fromEnd
+    bList = []
+    tempHead = head
 
-    length += 1
-    
-    if head.next != None:
-        currentPos = remove_kth_from_end(head.next, k)
-    
-    fromEnd += 1
-    
-    if fromEnd == (k + 1): # +1 because we need to backup another node to make the switch
-        head.next = currentPos.next
+    if k == 0:
+        return head 
+
+    while True:
+        bList.append(tempHead)
+        tempHead = tempHead.next
+        if tempHead == None:
+            break
+
+    indexOfNodeToRemove = len(bList) - k # -1 converts it to an index
+
+    if indexOfNodeToRemove >= 0:
+        bList[indexOfNodeToRemove - 1].next = bList[indexOfNodeToRemove].next
 
     return head
     
 
-[20, 19, 18, 17, 16, 15, 14, 13, 12, 11]
+# [20, 19, 18, 17, 16, 15, 14, 13, 12, 11]
 
 a = ListNode(20, ListNode(19, ListNode(18, ListNode(17, ListNode(16, ListNode(15, ListNode(14, ListNode(13, ListNode(12, ListNode(11))))))))))
 result = remove_kth_from_end(a, 4)
+print(result)
+
+# [100, 200]
+b = ListNode(100, ListNode(200))
+result = remove_kth_from_end(b, 2)
 print(result)
