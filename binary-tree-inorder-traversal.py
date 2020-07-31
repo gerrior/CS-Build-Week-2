@@ -9,9 +9,23 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
-        pass
+    def inorderTraversal(self, root: TreeNode) -> [int]:
+        result = []
 
+        self.innerInorderTraversal(root, result)
+
+        return result
+
+    def innerInorderTraversal(self, root, result):
+        if root != None:
+            self.innerInorderTraversal(root.left, result)
+            result.append(root.val)
+            self.innerInorderTraversal(root.right, result)
 
 a = Solution()
-print(a.inorderTraversal([1,null,2,3]))
+
+b = TreeNode(1, None, None)
+b.right = TreeNode(2, None, None)
+b.right.left = TreeNode(3, None, None)
+
+print(a.inorderTraversal(b))
