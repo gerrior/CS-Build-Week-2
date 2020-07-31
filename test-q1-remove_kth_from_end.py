@@ -20,8 +20,11 @@ def remove_kth_from_end(head, k):
 
     indexOfNodeToRemove = len(bList) - k # -1 converts it to an index
 
-    if indexOfNodeToRemove >= 0:
+    if indexOfNodeToRemove > 0:
         bList[indexOfNodeToRemove - 1].next = bList[indexOfNodeToRemove].next
+
+    if indexOfNodeToRemove == 0:
+        head = bList[0].next
 
     return head
     
